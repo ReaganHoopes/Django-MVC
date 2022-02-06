@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Entry </title>
+     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+
+</head>
+<body>
+
+<h1></h1>
+
+ <div class="navigation">
+        <ol>
+            <li><a href="{% url 'blog:home'%}">Blog</a></li>
+            <li><a href="{% url 'blog:archive'%}">Archive</a></li>
+            <li><a href="{% url 'blog:about'%}">About</a></li>
+            <li><a href="{% url 'blog:techtips+css'%}">Tech Tips - CSS Edition</a></li>
+            <li><a href="{% url 'blog:techtips-css'%}">Tech Tips - 90's Edition</a></li>
+            <li><a href="{% url 'blog:plan'%}">SDP</a></li>
+        </ol>
+    </div>
+{{now}}
+
+            <h1>{{entry.title}}</h1>
+            <h2>{{entry.author}}</h2>
+            <h3>{{entry.posted}}</h3>
+            <h3>Number of comments: {{commentsCount}}</h3>
+
+            <p>{{entry.content}}</p>
+
+        <h3>Join the Conversation!</h3>
+        <form action="{% url 'blog:comment' entry.id%}" method="post">
+        {% csrf_token %}
+            <fieldset>
+        Your Name: <input type="text" name="commenter"/><br/>
+        Your Email: <input type="text" name="email"/><br/>
+        Comment: <br/><textarea cols="35" rows="8" name="comment"></textarea><br/>
+                </fieldset>
+        <input type="submit" value="Comment"/>
+        </form>
+
+        <h3>Comments</h3>
+        {% for comment in comments %}
+        <div class="phase5">
+            <h2>{{comment.commenter}}({{comment.email}}) said this {{comment.posted}}</h2>
+            <p>{{comment.content}}</p>
+        </div>
+        {% endfor %}
+
+
+
+</body>
+</html>

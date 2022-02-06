@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+{% load blog_custom %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Home</title>
+ <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+
+</head>
+<body>
+
+<h1>Kim Possible Blog</h1>
+
+{{now}}
+
+<div class="navigation">
+        <ol>
+            <li><a href="">Blog</a></li>
+            <li><a href="{% url 'blog:archive'%}">Archive</a></li>
+            <li><a href="{% url 'blog:about'%}">About</a></li>
+            <li><a href="{% url 'blog:techtips+css'%}">Tech Tips - CSS Edition</a></li>
+            <li><a href="{% url 'blog:techtips-css'%}">Tech Tips - 90's Edition</a></li>
+            <li><a href="{% url 'blog:plan'%}">SDP</a></li>
+        </ol>
+    </div>
+
+{% for entry in entries %}
+    <div class="phase5">
+        <ul>
+            <li><a href="{{entry.id}}/">{{entry.title}}</a></li>
+            <li>Comment count: {{commentsCount|index:forloop.counter0}}</li>
+            <li>{{entry.author}}</li>
+            <li>{{entry.posted}}</li>
+        </ul>
+        <p>{{entry.content | truncatewords:100}}</p>
+    </div>
+{% endfor %}
+
+</body>
+</html>

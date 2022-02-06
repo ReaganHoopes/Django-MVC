@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang = "en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>softwareDevelopmentPlan</title>
+         <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+
+    </head>
+
+    <body>
+    <div class="navigation">
+        <ol>
+            <li><a href="{% url 'blog:home'%}">Blog</a></li>
+            <li><a href="{% url 'blog:archive'%}">Archive</a></li>
+            <li><a href="{% url 'blog:about'%}">About</a></li>
+            <li><a href="{% url 'blog:techtips+css'%}">Tech Tips - CSS Edition</a></li>
+            <li><a href="{% url 'blog:techtips-css'%}">Tech Tips - 90's Edition</a></li>
+            <li><a href="">SDP</a></li>
+        </ol>
+    </div>
+
+    <h1>Software Development Plan</h1>
+
+    {{now}}
+
+    <div class = "phase0">
+    <h2>Phase 0: Requirements Specification</h2>
+    <h3>What is the problem that this program aims to solve?</h3>
+        <p>Create a dynamic website using the django framework</p>
+    <h3>What I already know</h3>
+        <ol>
+            <li>For the most part I understand how my website works currently</li>
+            <li>Through class I feel that we have covered most everything else needed to use django, but I will need to learn how to do more specific things
+            not explicitly covered in class or in the tutorial</li>
+        </ol>
+    <h3>Things I need to learn</h3>
+         <ol>
+             <li>HTML input forms: done</li>
+             <li>Dynamic content: done</li>
+             <li>POST to database: done</li>
+             <li>Retrieve data from database: done</li>
+             <li>Django filters: done</li>
+             <li>Django templates: done</li>
+        </ol>
+    <h3>Challenges that I forsee</h3>
+        <p>From everything that we have heard in class it seems that this project is difficult and time consuming. I think that I am going to need to work ahead, so
+        that if I run into any issues, I have time to correct them. However, reading through the assignment description it appears that the project follows a pretty
+        organized step by step procedure. I think that if I format my SDP in the same order, I will have a little smoother course of action. There are also
+        a lot of new variables being added into this project with a sort of unknown difficulty since I am new to django. Reading documentation will be important,
+        so it was good to get some practice with that in the last assignment.</p>
+    </div>
+
+    <div class = "phase1">
+
+        <h2>Phase 1: System Analysis</h2>
+        <!-- explain what form output will take, describe what algorithms and formulae will be used, but don't write them yet-->
+        <h3>First steps</h3>
+        <ul>
+            <li>Create polls app using tutorial: done</li>
+            <li>Create .gitignore file: done</li>
+            <li>Create new django app blog: done</li>
+            <li>Copy images and css file into static files directory of the blog app: done</li>
+        </ul>
+        <h3>Convert files from previous project into templates</h3>
+            <ul>
+                <li>Files: about, techtips w/ and w/out css, plan</li>
+                <li>Add dynamic element: date/time</li>
+                <li>Can skip the teapot, forbidden, debugging, help, tips, and bio redirects</li>
+            </ul>
+        <h3>Blog model/database variables</h3>
+            <ul>
+                <li>title: charfield</li>
+                <li>author: charfield</li>
+                <li>content: textfield</li>
+                <li>posted: date/timefield</li>
+            </ul>
+
+        <h3>Comments model/database variables</h3>
+            <ul>
+                <li>blog: foreign key to blog.id</li>
+                <li>commenter: charfield</li>
+                <li>email: emailfield</li>
+                <li>content: text field</li>
+                <li>posted: date/timefield default is current time upon instantiation</li>
+            </ul>
+        <h3>Dynamic pages</h3>
+        <h4>Blog Home</h4>
+            <ul>
+                <li>List 3 most recent blog newest to oldest</li>
+                <li>Show first 100 words of the post and number of comments</li>
+            </ul>
+        <h4>Blog archive</h4>
+        <ul>
+            <li>Same as blog home, except display all blog posts</li>
+        </ul>
+        <h4>Blog entry</h4>
+        <ul>
+            <li>Show the entire blog post</li>
+            <li>All comments displayed from newest to oldest</li>
+            <li>Have a form to add comments. When a new comment is posted, redirect the user back to the same entry with the new comment updated</li>
+        </ul>
+        <h3>Database</h3>
+        <ul>
+            <li>Create 4+ blog entries with 101+ words (all variables from model present)</li>
+            <li>Create 4+ comments per post (all variables from model present)</li>
+        </ul>
+        <h3>Views.py methods:</h3>
+        <ul>
+            <li>plan</li>
+            <li>about</li>
+            <li>techtipsWithCSS</li>
+            <li>techtipsWithoutCSS</li>
+            <li>blogArchive </li>
+            <li>blogHome</li>
+            <li>home</li>
+            <li>blogEntry</li>
+            <li>comment</li>
+        </ul>
+    </div>
+    <div class = "phase2">
+    <h2>Phase 2: Design</h2>
+       <h3>Creating templates from past project files</h3>
+        <ul>
+            <li>Add code to load css pages and any images</li>
+            <li>Replace link to load css files</li>
+            <li>Add variables using double curly braces</li>
+            <li>Replace code to load images</li>
+        </ul>
+        <h3>Blog/class model</h3>
+            <ul>
+                <li>In models.py create the classes</li>
+                <li>Define the __str__ method to retrieve the blog entry by it's title and comment by it's commenter</li>
+                <li>Make sure to have posted variable for comments to default to the current time upon instantiation</li>
+            </ul>
+        <h3>Dynamic pages</h3>
+
+        <h4>Blog home</h4>
+            <ul>
+                <li>Load static files</li>
+                <li>Pass in latest 3 blog entries, and list of the number of comments for the entries</li>
+                <li>Using tags display the title, comments, author, date posted, and content truncated</li>
+                <li>Link to the blog entry page</li>
+            </ul>
+
+       <h4>Blog archive</h4>
+            <ul>
+                <li>Load static files</li>
+                <li>Pass in all blog entries, and list of the number of comments for the entries</li>
+                <li>Using tags display the title, comments, author, date posted, and content truncated</li>
+                <li>Link to the blog entry page</li>
+            </ul>
+       <h4>Blog entry</h4>
+            <ul>
+                <li>Load static files</li>
+                <li>Pass in the entry and it's corresponding comments</li>
+                <li>Using tags display the title, comments, author, date posted</li>
+                <li>Display all comments including the name, email, date posted, and content</li>
+                <li>Include a form to add comments, allow user to add: name, email and comment</li>
+            </ul>
+        <h3>Database</h3>
+        <ul>
+            <li>Model the form in blog entry after that of the polls app</li>
+        </ul>
+        <h3>Views.py</h3>
+            <ul>
+            <li>plan: load the html file, pass in the time</li>
+            <li>about: load the html file, pass in the time</li>
+            <li>techtipsWithCSS: load the html file, pass in the time</li>
+            <li>techtipsWithoutCSS: load the html file, pass in the time</li>
+            <li>blogArchive: pass in all blog entries in reverse order, have for loop create a list with the number of
+            comments corresponding to each entry and pass it, also pass current time, load the html file</li>
+             <li>blogArchive: pass in latest 3 blog entries in reverse order, have for loop create a list with the number of
+            comments corresponding to each entry and pass it, also pass current time, load the html file</li>
+            <li>home: pass in all blog entries in reverse order, have for loop create a list with the number of
+            comments corresponding to each entry and pass it, also pass current time, load the html file</li>
+            <li>blogEntry: pass the entry by the requested id, the comments and the number of them, and current time, load the html file</li>
+            <li>comment: get the entry corresponding to the id requested, instantiate a comments object, save the comment,
+                and return an HTTPResponseRedirect to reload the entry page with the updated comment</li>
+        </ul>
+    </div>
+<div class="phase3">
+    <h2>Phase 3: Implementation</h2>
+     <h3>Creating templates from past project files</h3>
+        <ul>
+            <li>Add <code>{% verbatim %} {% load static %} {% endverbatim %}</code> at top of file to load css pages and any images</li>
+            <li>To load css files replace link with something along these lines: <code> &lt;link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}"&gt;</code></li>
+            <li>Add variables using double curly braces<code>{% verbatim %} {{now}} {% endverbatim %}</code>
+            <li>Add images using something along the lines of: <code> &lt;img src="{% static 'blog/images/kp_pet.jpg' %}" alt="Pet"&gt; </code> </li>
+         </ul>
+        <h3>Blog/class model</h3>
+            <ul>
+                <li>Model variable format: <code>title = models.CharField(max_length=200)</code> </li>
+                <li>String method body: <code>return self.title</code></li>
+                <li>Default variable format: <code>posted = models.DateTimeField(default = datetime.now())</code></li>
+                <li>Foreign key variable format: <code>blog = models.ForeignKey('Blog', on_delete=models.CASCADE)</code></li>
+            </ul>
+        <h3>Dynamic pages</h3>
+
+         <h4>Blog archive</h4>
+            <ul>
+                <li>Load static files: <code> {% verbatim %}&lt;link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}"&gt; {% endverbatim %}</code></li>
+                <li>Pass in latest 3 blog entries, views.py line looks like <code>entries = Blog.objects.order_by('-posted').all()</code> </li>
+                <li>Display in for loop <code> {% verbatim %}{% for entry in entries %} ... {% endfor %}{% endverbatim %}</code></li>
+                <li>List of the number of comments for the entries using custom filter, <code>{% verbatim %} {{commentsCount|index:forloop.counter0}} {% endverbatim %}</code></li>
+                <li>Content truncated <code> {% verbatim %}{{entry.content | truncatewords:100}}{% endverbatim %}</code></li>
+                <li>Link to the blog entry page <code>&lt;{% verbatim %}a href="{{entry.id}}/">{{entry.title}}{% endverbatim %}&gt;</code></li>
+            </ul>
+        <h4>Blog home</h4>
+            <ul>
+             <li>Same as above except view.py line to load blog entries looks like <code>entries = Blog.objects.order_by('-posted')[:3]</code></li>
+            </ul>
+
+       <h4>Blog entry</h4>
+            <ul>
+                <li>Load static files: <code> &lt;{% verbatim %} link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" {% endverbatim %}&gt;</code></li>
+                <li>Pass in the entry and it's corresponding comments, views.py lines <code>entry = Blog.objects.get(id=id)</code>
+                    and <code>    comments = Comments.objects.filter(blog=entry).order_by('-posted')</code></li>
+                <li>Using tags display the title, comments, author, date posted</li>
+                <li>Display in for loop <code>{% verbatim %}{% for comment in comments %} ... {% endfor %} {% endverbatim %}</code></li>
+                <li>Include a form to add comments modeled after that of the polls app: add csrf token <code>{% verbatim %}{% csrf_token %}{% endverbatim %}</code></li>
+            </ul>
+        <h3>Views.py</h3>
+            <ul>
+                <li>plan: <code>return render(request, 'blog/plan.html', {'now': strftime('%c')})</code></li>
+                <li>about: <code>return render(request, 'blog/about.html', {'now': strftime('%c')})</code></li>
+            <li>techtipsWithCSS: <code>return render(request, 'blog/techtips+css.html', {'now': strftime('%c')})</code></li>
+                <li>techtipsWithoutCSS: <code>return render(request, 'blog/techtips-css.html', {'now': strftime('%c')})</code></li>
+            <li>blogArchive: <code>context = {'now': strftime('%c'), 'entries': entries, 'commentsCount':commentsCount}</code>
+                and <code>return render(request, 'blog/blogArchive.html', context)</code></li>
+             <li>blogArchive: <code>context = {'now': strftime('%c'), 'entries': entries,'commentsCount':commentsCount}</code>
+                 and <code>return render(request, 'blog/blogHome.html', context)</code></li>
+            <li>home: <code>context = {'now': strftime('%c'), 'entries': entries,'commentsCount':commentsCount}</code> and
+                <code>return render(request, 'blog/blogHome.html', context)</code></li>
+                <li>blogEntry: <code>context = {'now': strftime('%c'), 'entry': entry, 'comments':comments, 'commentsCount'
+                    :commentsCount}</code> and <code>return render(request, 'blog/blogEntry.html', context)</code></li>
+            <li>comment: <code>comment = Comments(blog=entry, commenter=request.POST.get('commenter'),
+                email =request.POST.get('email'), content = request.POST.get('comment'))</code> and
+            <code>return HttpResponseRedirect(reverse('blog:entry', args=(id,)))</code></li>
+        </ul>
+
+</div>
+
+    <div class="phase4">
+    <h2>Phase 4: Testing and debugging</h2>
+    <!--Test cases-->
+   <ul>
+       <li>Links: all links work</li>
+       <li>Static content: css and images load properly</li>
+       <li>Form: posting new comments works</li>
+       <li>Truncate: only correct number of entries and words display for blog home and archive pages</li>
+       <li>Dynamic element: date/time updates with page refresh</li>
+   </ul>
+    </div>
+
+    <div class="phase5">
+    <h2>Phase 5: Deployment</h2>
+    <h3>Code pushed to gitlab: done </h3>
+    </div>
+
+    <div class="phase6">
+    <h2>Phase 6: Maintenance</h2>
+        <h3>What parts of your program are sloppily written and hard to understand?</h3>
+            <p>My comments in my code could be improved to outline exactly what is going on.</p>
+
+        <h3> Are there parts of your program which you aren’t quite sure how/why they work?</h3>
+            <p>I modeled my comments form after that in the tutorial, so I don't totally understand every part of it. I will
+            have to do a little more research to get a better handle on it.</p>
+
+        <h3>If a bug is reported in a few months, how long would it take you to find the cause?</h3>
+            <p>Not too long. Luckily bugs have pretty good error messages to help you find the issue and depending
+            on the issue, correcting the bug shouldn't be too hard if your read the documentation.</p>
+
+        <h3>Will your document make sense to anybody besides yourself?</h3>
+            <p>Yes. I followed the format of the tutorial very closely, so I think my set up is very standard and
+                therefore easy for someone elsse to follow.</p>
+
+        <h3>Will your document make sense to yourself in 6 months time?</h3>
+            <p>Yes, once again, the format is pretty standard, so while I may need to brush up on my django if I don't use it
+            much in the next 6 months, once I do that I should be able to follow all of my code.</p>
+
+        <h3>How easy will it be to add a new feature to this program in a year?</h3>
+            <p>My code is organized, so I think that adding, removing, or changing things would be easy because finding
+            the location to implement changes would be easy.</p>
+
+        <h3>Will your program continue to work after upgrading your computer's hardware, the OS, the next version?</h3>
+            <p>It should. I don't know that much about django with respect to upgrades, so that would be something
+            that I would need to research.</p>
+    </div>
+    </body>
+</html>
